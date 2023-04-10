@@ -1,0 +1,8 @@
+/.calva/
+/.clerk/
+/.clj-kondo/
+/.cpcache/
+/.env
+/.lsp/
+/.nrepl-port
+/classes/
