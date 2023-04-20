@@ -1,6 +1,6 @@
-(ns Belvedere.supabase
+(ns Scyan.supabase
   (:require [hato.client :as client]
-            [Belvedere.openai :as openai]
+            [Scyan.openai :as openai]
             [clojure.string :as str]
             [malli.core :as m]
             [malli.clj-kondo :as mc]))

@@ -1,4 +1,4 @@
-(ns Belvedere.openai
+(ns Scyan.openai
   (:require [wkok.openai-clojure.api :as api]
             [malli.core :as m]
             [clojure.core.match :refer [match]]

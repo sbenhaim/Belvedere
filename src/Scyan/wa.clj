@@ -1,4 +1,4 @@
-(ns Belvedere.wa
+(ns Scyan.wa
   (:require [malli.core :as m]
             [hato.client :as hc]))
 

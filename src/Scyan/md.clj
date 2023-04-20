@@ -1,11 +1,11 @@
-(ns Belvedere.md
+(ns Scyan.md
   (:require [clojure.string :as str]
             [clojure.core.async :refer [go-loop <! >! close!]]
             [selmer.parser :refer [<<] :as selmer]
             [clojure.core.match :refer [match]]
-            [Belvedere.maestro :as mo]
+            [Scyan.maestro :as mo]
             [malli.core :as m]
-            [Belvedere.openai :as openai]))
+            [Scyan.openai :as openai]))
 
 
 (defn md->openai-messages [md]

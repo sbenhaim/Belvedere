@@ -1,6 +1,6 @@
-(ns Belvedere.maestro
-  (:require [Belvedere.openai :as openai]
-            [Belvedere.wa :as wa]
+(ns Scyan.maestro
+  (:require [Scyan.openai :as openai]
+            [Scyan.wa :as wa]
             [clojure.edn :as edn]
             [clojure.core.match :refer [match]]
             [clojure.string :as str]
@@ -39,8 +39,10 @@
   (streaming-append! [a c] (swap! a conj (openai/collect-streaming-response c))))
 
 
-
-(get-log (atom (openai/new-convo)))
+(let [a (atom (openai/new-convo))]
+  (append! a (openai/message "What is 3 + 4?"))
+  (streaming-append! a (openai/chat @a :stream true))
+  (get-log a))
 
 
 (defn tool-response [success tool response & opts]

@@ -1,4 +1,4 @@
-(ns Belvedere.llama
+(ns Scyan.llama
   (:require [libpython-clj2.require :refer [require-python]]
             [libpython-clj2.python :refer [py. py.. py.-] :as py]
             [portal.api :as portal]))
@@ -27,7 +27,7 @@
 (def gpt4-sc (py. llama/ServiceContext from_defaults :llm_predictor gpt4-predictor :prompt_helper prompt-helper))
 (def gpt3-sc (py. llama/ServiceContext from_defaults :llm_predictor gpt3-predictor :prompt_helper prompt-helper))
 
-; index = GPTSimpleVectorIndex.load_from_disk('belvedere_py/indices/databricks.json')
+; index = GPTSimpleVectorIndex.load_from_disk('scyan_py/indices/databricks.json')
 
 (comment
 

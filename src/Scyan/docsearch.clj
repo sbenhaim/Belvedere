@@ -1,19 +1,19 @@
-(ns Belvedere.docsearch
-  (:require [Belvedere.load :as load]
-            [Belvedere.supabase :as supabase]
-            [Belvedere.prompts :as prompts]
+(ns Scyan.docsearch
+  (:require [Scyan.load :as load]
+            [Scyan.supabase :as supabase]
+            [Scyan.prompts :as prompts]
             [libpython-clj2.python :refer [py. py.. py.-] :as py]
             [libpython-clj2.require :refer [require-python]]
             [malli.core :as m]
-            [Belvedere.openai :refer [embedding] :as openai]
+            [Scyan.openai :refer [embedding] :as openai]
             [hato.client :as hato]))
 
 
 (require-python '[langchain.document_loaders :as dl])
 
 
-(defn lc-docs->belvedere
-  "Converts a list of LangChain documents to Belvedere format"
+(defn lc-docs->scyan
+  "Converts a list of LangChain documents to Scyan format"
   [docs]
   (doall
    (pmap (fn [doc]
@@ -32,7 +32,7 @@
   "Uploads the docs to the database"
     [name dir & opts]
     (let [raw-docs (load/load-directory dir opts)
-          docs (lc-docs->belvedere raw-docs)]
+          docs (lc-docs->scyan raw-docs)]
       (supabase/write-docs name docs)))
 
 
@@ -40,7 +40,7 @@
   "Parses, splits, vectorizes, and uploads a single file"
   [name file]
   (let [chunks (load/load-md file)
-        docs (lc-docs->belvedere chunks)]
+        docs (lc-docs->scyan chunks)]
     (supabase/write-docs name docs)))
 
 

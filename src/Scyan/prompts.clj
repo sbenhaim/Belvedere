@@ -1,7 +1,7 @@
-(ns Belvedere.prompts
+(ns Scyan.prompts
   (:require [selmer.parser :as template]
-            [Belvedere.supabase :as supabase]
-            [Belvedere.openai :as openai]))
+            [Scyan.supabase :as supabase]
+            [Scyan.openai :as openai]))
 
 (defn save [prompt]
   (let [meta-data {:inputs (template/known-variables prompt)}]

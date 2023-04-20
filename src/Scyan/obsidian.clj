@@ -1,6 +1,6 @@
-(ns Belvedere.obsidian
-  (:require [Belvedere.md :as md]
-            [Belvedere.openai :as openai]))
+(ns Scyan.obsidian
+  (:require [Scyan.md :as md]
+            [Scyan.openai :as openai]))
 
 
 (defn converse!
@@ -17,6 +17,7 @@
 
 
 
-(converse! "/Users/selah/Drive/Belvedere/Belvedere/Conversations/Core Async.md"
-           "gpt-4"
-           (slurp "/Users/selah/Drive/Belvedere/Belvedere/Agents/cyan-bootstrap.md"))
+(comment
+ (converse! "/Users/selah/Drive/Scyan/Scyan/Conversations/Core Async.md"
+            "gpt-4"
+            (slurp "/Users/selah/Drive/Scyan/Scyan/Agents/cyan-bootstrap.md")))
