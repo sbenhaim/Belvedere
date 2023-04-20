@@ -6,3 +6,5 @@
 /.lsp/
 /.nrepl-port
 /classes/
+/.DS_Store
+/poetry.lock

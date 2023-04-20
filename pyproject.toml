@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "belvedere-py"
+version = "0.1.0"
+description = ""
+authors = ["Selah Ben-Haim <selahb@gmail.com>"]
+readme = "README.md"
+packages = [{include = "belvedere_py"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+unstructured = "^0.5.11"
+langchain = "^0.0.137"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
