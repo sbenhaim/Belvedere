@@ -4,9 +4,10 @@
             [clojure.edn :as edn]
             [clojure.core.match :refer [match]]
             [clojure.string :as str]
-            [clojure.core.async :refer [<!!]]))
+            [clojure.core.async :refer [<!!] :as a]))
 
 (def system-prompt "When a user request involves a mathematical formula or calculation, utilize the Wolfram Alpha API and respond with the EDN data structure: [:wolfram-alpha \"{{calculation}}\"]]")
+
 
 (defn process-wolfram-alpha [{:keys [content] :as response}]
   (if-let [match (re-find #"\[:wolfram-alpha \"(.+?)\"\]" content)]
@@ -62,7 +63,23 @@
     (dispatch instr)))
 
 
-(maestro "")
+(defn maestro-conduct
+  [request & {:keys [log]
+              :or {log (atom [])}}]
+  (append! log (openai/convo system-prompt))
+  (append! log [:user request])
+  (loop [log log]
+    (let [rc (openai/chat (get-log log) :stream true)
+          rmult (a/mult rc)]
+      (streaming-append! log (a/tap rmult (a/chan)))
+      (let [response (openai/collect-streaming-response (a/tap rmult (a/chan)))]
+        (append! log response)
+        (when-not (response :stop)
+          (let [res (parse-response response)
+                ext-res (dispatch res)]
+            (append! log [:user ext-res])
+            (recur log)))))))
+
 
 
 (defmethod dispatch :default [resp]

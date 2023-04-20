@@ -3,12 +3,14 @@
             [clojure.core.async :refer [go-loop <! >! close!]]
             [selmer.parser :refer [<<] :as selmer]
             [clojure.core.match :refer [match]]
-            [Scyan.maestro :as mo]
+            [Belvedere.maestro :as mo]
             [malli.core :as m]
-            [Scyan.openai :as openai]))
+            [Belvedere.openai :as openai]))
 
-
-(defn md->openai-messages [md]
+;; Function to convert Markdown into a collection of OpenAI messages
+(defn md->openai-messages
+  "Converts a Markdown string into a collection of OpenAI messages."
+  [md]
   (->> (str/split md #"(?m)^# ")
        rest
        (map #(str/split-lines %))
@@ -16,15 +18,16 @@
                [(keyword (.toLowerCase (first r)))
                 (str/join "" (rest r))]))))
 
-
+;; Function to generate role heading string
 (defn role-heading
+  "Returns a role heading string based on the given role."
   [role]
   (let [role-str (str/capitalize (name role))]
     (<< "\n\n# {{role-str}}\n\n")))
 
-
-
+;; Function to stream content from a channel to a file
 (defn stream-to-file
+  "Streams content from a channel to a file, with an optional append? flag."
   ([c file] (stream-to-file c file false))
   ([c file append?]
    (when-not append?
@@ -39,7 +42,7 @@
              :append true)
        (recur)))))
 
-
+;; MarkdownLog type definition
 (deftype MarkdownLog [file]
   mo/MaestroLog
   (get-log [_] (md->openai-messages (slurp file)))
