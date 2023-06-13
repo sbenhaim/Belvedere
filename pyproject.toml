@@ -1,15 +1,24 @@
 [tool.poetry]
-name = "belvedere-py"
+name = "scyan-py"
 version = "0.1.0"
 description = ""
 authors = ["Selah Ben-Haim <selahb@gmail.com>"]
 readme = "README.md"
-packages = [{include = "belvedere_py"}]
+packages = [{include = "scyan_py"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 unstructured = "^0.5.11"
-langchain = "^0.0.137"
+llama-index = "^0.5.23.post1"
+requests = "^2.29.0"
+beautifulsoup4 = "^4.12.2"
+html2text = "^2020.1.16"
+chromadb = "^0.3.21"
+matplotlib = "^3.7.1"
+openai = {extras = ["datalib"], version = "^0.27.6"}
+coconut = "^3.0.0"
+guidance = "^0.0.51"
+ipykernel = "^6.23.1"
 
 [build-system]
 requires = ["poetry-core"]

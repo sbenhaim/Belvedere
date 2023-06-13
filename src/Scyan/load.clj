@@ -9,8 +9,8 @@
 
 
 (defn splitter [docs & {:keys [chunk-size chunk-overlap]
-                        :or {chunk-size 500
-                             chunk-overlap 20}}]
+                        :or {chunk-size 1000
+                             chunk-overlap 50}}]
   (ts/RecursiveCharacterTextSplitter :chunk_size chunk-size
                                      :chunk_overlap chunk-overlap))
 

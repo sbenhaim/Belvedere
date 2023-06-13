@@ -62,6 +62,6 @@
 
 (comment
 
-  (query-docs "databricks" "What is the syntax for creating a SQL table?")
+  (query-docs "databricks" "What is the syntax for creating a SQL table?"))
 
-  )
+

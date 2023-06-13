@@ -1,0 +1,1 @@
+(ns Scyan.smart-fn)

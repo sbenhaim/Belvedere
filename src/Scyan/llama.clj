@@ -3,12 +3,7 @@
             [libpython-clj2.python :refer [py. py.. py.-] :as py]
             [portal.api :as portal]))
 
-(portal.api/tap)
-(def p (portal.api/open))
 
-(defn text-tap [stuff]
-  (tap> (with-meta [:portal.viewer/markdown stuff]
-          {:portal.viewer/default :portal.viewer/hiccup})))
 
 (require-python '[llama_index :as llama])
 (require-python '[langchain.chat_models :as chat_models])
@@ -28,6 +23,11 @@
 (def gpt3-sc (py. llama/ServiceContext from_defaults :llm_predictor gpt3-predictor :prompt_helper prompt-helper))
 
 ; index = GPTSimpleVectorIndex.load_from_disk('scyan_py/indices/databricks.json')
+
+
+(defn index-nodes
+  [nodes]
+  (llama/GPTSimpleVectorIndex nodes :service_context gpt4-sc))
 
 (comment
 

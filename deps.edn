@@ -1,11 +1,14 @@
-{:deps {org.clojure/core.async {:mvn/version "1.6.673"}
+{:paths ["src"]
+ :deps {org.clojure/core.async {:mvn/version "1.6.673"}
         org.clojure/spec.alpha {:mvn/version "0.2.194"}
         metosin/malli {:mvn/version "0.10.4"}
         metosin/schema-tools {:mvn/version "0.13.0"}
+        com.crypticbutter/snoop {:mvn/version "21-353-alpha"}
 
         ;; funcool/promesa {:mvn/version "10.0.594"}
 
-        djblue/portal {:mvn/version "0.38.2"}
+        djblue/portal {:mvn/version "0.41.0"}
+        reagent/reagent {:mvn/version "1.2.0"}
         io.github.nextjournal/clerk {:mvn/version "0.13.842"}
 
         clj-python/libpython-clj {:mvn/version "2.024"}
@@ -19,4 +22,29 @@
 
         ;; templating
         selmer/selmer {:mvn/version "1.12.58"}
-        }}
+
+        ;; HTTP stuff
+        ring/ring-jetty-adapter {:mvn/version "1.10.0"}
+        ;; Routing
+        metosin/jsonista {:mvn/version "0.3.7"}
+        metosin/reitit {:mvn/version "0.6.0"}
+        metosin/ring-swagger-ui {:mvn/version "5.0.0-alpha.0"}
+
+        ;; db
+        com.github.seancorfield/next.jdbc {:mvn/version "1.3.874"}
+        org.postgresql/postgresql {:mvn/version "42.6.0"}
+        com.taoensso/carmine {:mvn/version "3.2.0"}
+        com.github.seancorfield/honeysql {:mvn/version "2.4.1026"}
+        com.pgvector/pgvector {:mvn/version "0.1.1"}
+
+        ;; mathy stuff
+        net.mikera/core.matrix {:mvn/version "0.63.0"}
+
+        ;; Time
+        tick/tick {:mvn/version "0.6.0"}}
+
+ :aliases
+ {:dev {:jvm-opts ["-Dsnoop.enabled"]}}
+ :mvn/repos {
+             "clojars" {:url "https://repo.clojars.org/"}
+             "central" {:url "https://repo1.maven.org/maven2/"}}}

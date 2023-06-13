@@ -4,17 +4,18 @@
 
 
 (def api-url "http://api.wolframalpha.com/v1/")
-(def app-id (System/getenv "WOLFRAM_APP_ID"))
+(defonce app-id (System/getenv "WOLFRAM_APP_ID"))
 
-(defn result
-  [query]
+(defn query
+  [q]
   (get-in
-   (hc/get (str api-url "result")
-           {:query-params {:i query
+   (hc/get (str api-url #_"result" #_"conversation.jsp" "llm-api")
+           {:query-params {:input q
                            :appid app-id}})
    [:body]))
 
-(m/=> result [:=> [:cat :string] :string])
 
 (comment
-  (result "2+2"))
+  (query "are 3, 5, 7 ,8 coprime?")
+  (query "2+2"))
+
